@@ -1,12 +1,30 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
-  <router-view/>
+	<main>
+		<router-view/>
+	</main>
+
 </template>
 
+<script>
+import { onBeforeMount } from "vue";
+import { useStore } from "vuex";
+
+import Header from "./components/Header"
+
+export default {
+	components:{
+		Header
+	},
+
+}
+</script>
+
 <style>
+*{
+	margin:0;
+	padding: 0;
+	box-sizing: border-box;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
