@@ -1,5 +1,5 @@
 <template>
-	<Header/>
+	<Header />
 	<main>
 		<router-view></router-view>
 	</main>
@@ -12,6 +12,15 @@ export default {
 	components:{
 		Header
 	},
+	data: () =>({
+
+	}),
+	mounted(){
+
+	},
+	methods:{
+
+	}
 }
 </script>
 

@@ -1,20 +1,46 @@
 <template>
 	<main class="login">
+		<div class="p-card logreg">
+			<TabView>
 		<section class="forms">
-			<form  class="register" @submit.prevent="register">
-				<h2>Register</h2>
-				<input type="email" placeholder="Email" v-model="register_form.email"/>
-				<input type="password" placeholder="password" v-model="register_form.password"/>
-				<input	type="submit" value="Register"/>
+			<TabPanel>
+				<template #header>
+					<i class="pi pi-sign-in"></i>
+					<span> Войти</span>
+				</template>
+				<div class="p-card" style="margin-top: 1rem;">
+					<form class="" @submit.prevent="login" style="padding: 1rem">
+						<h2>Войти в систему</h2>
+						<div style="margin-top: 0.5rem">
+						<input class="p-inputtext" type="email" placeholder="Email" v-model="login_form.email"/>
+						<input class="p-inputtext" type="password" placeholder="password" v-model="login_form.password"/>
+						<input	class="p-button " type="submit" value="Login"/>
+						</div>
+					</form>
+				</div>
+			</TabPanel>
 
+
+			<TabPanel>
+				<template #header>
+					<i class="pi pi-user-plus"></i>
+					<span> Зарегистрироваться</span>
+				</template>
+			<div class="p-card"  style="margin-top: 1rem;">
+			<form  class="register" @submit.prevent="register" style="padding: 1rem">
+				<h2>Регистрация</h2>
+				<div style="margin-top: 0.5rem;">
+				<input class="p-inputtext" type="email" placeholder="Email" v-model="register_form.email"/>
+				<input class="p-inputtext" type="password" placeholder="password" v-model="register_form.password"/>
+				<input	class="p-button " type="submit" value="Register"/>
+				</div>
 			</form>
-			<form class="login" @submit.prevent="login">
-				<h2>Login</h2>
-				<input type="email" placeholder="Email" v-model="login_form.email"/>
-				<input type="password" placeholder="password" v-model="login_form.password"/>
-				<input	type="submit" value="Login"/>
-			</form>
+		</div>
+			</TabPanel>
+
 		</section>
+			</TabView>
+		</div>
 	</main>
 
 </template>
@@ -49,5 +75,22 @@ export default {
 </script>
 
 <style scoped>
+section{
+
+}
+.logreg{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-right: -50%;
+	transform: translate(-50%, -50%)
+}
+span{
+
+	margin:0.5rem;
+}
+input{
+	margin: 0.5rem;
+}
 
 </style>
