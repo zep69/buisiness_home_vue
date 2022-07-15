@@ -2,9 +2,9 @@
 	<Toolbar >
 		<template #start>
 			<div v-if="$store.state.user">
-				<Button class="p-button-text p-ripple" @click="$router.push('/main/home')">Home</Button>
+				<!-- <Button class="p-button-text p-ripple" @click="$router.push('/main/home')">Home</Button> -->
 				<!-- <router-link class="p-button-text" to="/"></router-link> | -->
-				<Button class="p-button-text p-ripple" @click="$router.push('/main/about')">About</Button>
+				<!-- <Button class="p-button-text p-ripple" @click="$router.push('/main/about')">About</Button> -->
 				<Button icon="pi pi-bars p-ripple" class="p-button-rounded  p-button-text" @click="visibleLeft = true"></Button>
 				<!--<router-link class="p-button-text" to="/about">About</router-link>  -->
 			</div>
@@ -18,13 +18,10 @@
 	</Toolbar>
 	<Sidebar v-model:visible="visibleLeft"  :baseZIndex="10000">
 		<h3>Меню</h3>
-		<Listbox v-model="selectedMenu" :options="menuItems" @click="$router.push(menuItems.router)" >
-			<template #option="slotProps">
-				<div @click="$router.push(slotProps.option.router)">
-					<div>{{slotProps.option.name}}</div>
-				</div>
-			</template>
-		</Listbox>
+		<div style="margin-top: 1rem;" v-for="(item, index) in menuItems">
+			<Button :icon="item.icon" class="p-button-text" :label="index+1 + '.'+item.name"  @click="$router.push(item.router); visibleLeft=false"></Button>
+		</div>
+
 	</Sidebar>
 </template>
 
@@ -47,10 +44,10 @@ export default {
 			selectedMenu: null,
 			menuItems:[
 				{
-						name:'Бюджет', router:'/main/home'
+						name:'Бюджет', router:'/main/home', icon: 'pi pi-wallet'
 				},
 				{
-					name: 'ToDo', router: '/main/about'
+					name: 'ToDo', router: '/main/about', icon:'pi pi-check-square'
 				}
 			]
 		}
