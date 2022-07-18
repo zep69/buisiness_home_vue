@@ -11,6 +11,7 @@ export default createStore({
   mutations: {
     SET_USER(state, user){
       state.user=user
+
     },
     CLEAR_USER(state){
       state.user=null
@@ -61,6 +62,7 @@ export default createStore({
         return
       }
       commit('SET_USER', auth.currentUser)
+
       router.push('/main/home')
 
     },
