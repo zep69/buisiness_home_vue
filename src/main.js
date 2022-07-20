@@ -23,6 +23,8 @@ import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import Textarea from 'primevue/textarea';
 import Card from 'primevue/card';
+import Dialog from 'primevue/dialog';
+import Dropdown from 'primevue/dropdown';
 
 import "primevue/resources/themes/saga-blue/theme.css"
 import "primevue/resources/primevue.min.css"
@@ -49,6 +51,8 @@ app.component('Column',Column)
 app.component('Textarea', Textarea)
 app.component('Card', Card)
 app.component('InputText', InputText)
+app.component('Dialog', Dialog)
+app.component('Dropdown', Dropdown)
 
 
 
