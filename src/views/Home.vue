@@ -58,13 +58,13 @@
 		<Dialog header="Добвление расходов" v-model:visible="addDialog" :modal="true" >
 			<div style="display: flex; align-content: center;">
 				<Dropdown v-model="selectLabel" :options="chartData.labels" placeholder="Выберите категорию"/>
-				<input type="number" class="p-inputtext" placeholder="Сумма покупки">
+				<input type="number" class="p-inputtext" v-model="money" placeholder="Сумма покупки">
 			</div>
 			<div style="display: flex; justify-content: center; margin-top: 0.5rem;">
 				<input v-if="!checksDateRange" class="p-checkbox" type="checkbox" id="checkbox" v-model="checksDateRange" style="margin-right: 0.5rem">
 				<label v-if="!checksDateRange" for="checkbox">Добавить за определенный день</label>
 				<div v-if="checksDateRange" class="field" style="display: block; margin-top: 1rem;">
-					<Calendar id="basic" v-model="date"  dateFormat="dd.mm.yy" />
+					<Calendar id="basic" v-model="datePick"  dateFormat="dd.mm.yy" />
 					<Button class="p-button-icon p-button-danger" icon="pi pi-times" @click="changeCheckBox()"></Button>
 				</div>
 			</div>
@@ -97,8 +97,11 @@ export default {
 	data(){
 		return{
 			date:new Date(),
+			datePick:new Date(),
 			checksDateRange:false,
+			user:null,
 			selectLabel:null,
+			money:null,
 			chartData: {
 				labels: ['Преколы','Роллов','Свитбоксы'],
 				datasets: [
@@ -143,6 +146,7 @@ export default {
 	async mounted(){
 		await this.getTypes()
 		await this.getMoney()
+		console.log(this.date.getTime())
 	},
 	methods:{
 		async getMoney(){
@@ -188,6 +192,15 @@ export default {
 			} else{
 				alert('Ошибка')
 			}
+		},
+		async addExpenses(label, date, money, user){
+			if(label!=null || date!=null ||money!=null){
+				const docRef = await addDoc(collection(db, "money"), {
+					header: header,
+					content: content,
+					user: userUid
+				});
+			} else alert('Зполните поля')
 		},
 		openDialog(){
 			this.addDialog = true
